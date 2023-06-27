@@ -36,6 +36,7 @@ class LinkedList:
     def pop(self):
         if(self.head is not None):
             curr_node = self.head
+            temp = curr_node
             if(curr_node.next is None): #LL with only 1 node
                 self.head = None
                 self.tail = None
@@ -43,48 +44,53 @@ class LinkedList:
                 while(curr_node.next.next is not None): #getting the 2nd last node
                     curr_node = curr_node.next
 
+                temp = curr_node.next
                 self.tail = curr_node
                 curr_node.next = None
-            
+
             self.length -= 1
+            return temp.value
+        else:
+            return None
+
+
+    def popFirst(self):
+        if(self.length > 0):
+            temp = self.head
+            if(self.head.next is None):
+                self.head = None
+                self.tail = None
+            else:
+                self.head = self.head.next
+            self.length -= 1
+            return temp.value
+        else:
+            return None
+        
     
+    def get(self, idx):
+        curr_node = self.head
+        if(idx < 0 or idx >= self.length or curr_node is None):
+            return None
+        else:
+            for _ in range(idx):
+                curr_node = curr_node.next 
+            return curr_node.value 
 
     def print(self):
         curr_node = self.head
         while(curr_node != None):
             print(curr_node.value, end=" ")
             curr_node = curr_node.next
+        print()
 
 
 l1 = LinkedList(3)
 
-l1.append(2)
+l1.append(4)
 l1.append(5)
+l1.append(6)
 
 l1.print()
-print()
 
-l1.prepend(11)
-l1.prepend(12)
-
-l1.print()
-print()
-
-l1.pop()
-l1.pop()
-l1.pop()
-l1.pop()
-
-l1.print()
-print()
-
-l1.append(8)
-l1.append(10)
-
-l1.print()
-print()
-
-l1.pop()
-l1.pop()
-l1.print()
-print()
+print(l1.get(3))
