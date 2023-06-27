@@ -49,7 +49,7 @@ class LinkedList:
                 curr_node.next = None
 
             self.length -= 1
-            return temp.value
+            return temp
         else:
             return None
 
@@ -63,10 +63,9 @@ class LinkedList:
             else:
                 self.head = self.head.next
             self.length -= 1
-            return temp.value
+            return temp
         else:
             return None
-        
     
     def get(self, idx):
         curr_node = self.head
@@ -75,7 +74,12 @@ class LinkedList:
         else:
             for _ in range(idx):
                 curr_node = curr_node.next 
-            return curr_node.value 
+            return curr_node 
+        
+    def set_value(self, idx, value):
+        temp = self.get(idx)
+        if temp is not None:
+            temp.value = value
 
     def print(self):
         curr_node = self.head
@@ -93,4 +97,9 @@ l1.append(6)
 
 l1.print()
 
-print(l1.get(3))
+l1.set_value(1,0)
+l1.print()
+
+l1.set_value(3,9)
+l1.print()
+
