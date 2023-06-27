@@ -21,6 +21,7 @@ class LinkedList:
             new_node.next = self.head
             self.head = new_node
             self.length += 1
+        return True
 
     def append(self, value):
         new_node = Node(value)
@@ -32,6 +33,7 @@ class LinkedList:
             self.tail.next = new_node
             self.tail = new_node
             self.length += 1
+        return True
 
     def pop(self):
         if(self.head is not None):
@@ -81,6 +83,22 @@ class LinkedList:
         if temp is not None:
             temp.value = value
 
+    def insert(self, idx, value):
+        if(idx < 0 or idx > self.length):
+            return False
+        else:
+            if(idx == 0):
+                return self.prepend(value)
+            elif(idx == self.length):
+                return self.append(value)
+            new_node = Node(value)
+            temp = self.get(idx-1)
+            new_node.next = temp.next
+            temp.next = new_node
+            self.length += 1
+            return True
+
+
     def print(self):
         curr_node = self.head
         while(curr_node != None):
@@ -89,17 +107,10 @@ class LinkedList:
         print()
 
 
-l1 = LinkedList(3)
+l1 = LinkedList(0)
 
-l1.append(4)
-l1.append(5)
-l1.append(6)
+l1.append(2)
+
+l1.insert(1,1)
 
 l1.print()
-
-l1.set_value(1,0)
-l1.print()
-
-l1.set_value(3,9)
-l1.print()
-
