@@ -97,7 +97,34 @@ class LinkedList:
             temp.next = new_node
             self.length += 1
             return True
+        
+    def remove(self, idx):
+        if(idx < 0 or idx >= self.length):
+            return None
+        else:
+            if(idx == 0):
+                return self.popFirst()
+            elif(idx == self.length-1):
+                return self.pop()
+            else:
+                prev = self.get(idx-1)
+                curr = prev.next
+                prev.next = curr.next
+                curr.next = None
+                self.length -= 1
+                return curr
 
+    def reverse(self):
+        temp = self.head
+        self.head = self.tail
+        self.tail = temp
+        before = None
+        for _ in range(self.length):
+            after = temp.next
+            temp.next = before
+            before = temp
+            temp =after
+            
 
     def print(self):
         curr_node = self.head
@@ -107,10 +134,14 @@ class LinkedList:
         print()
 
 
+
 l1 = LinkedList(0)
 
+l1.append(1)
 l1.append(2)
+l1.append(3)
+l1.append(4)
 
-l1.insert(1,1)
-
+l1.print()
+l1.reverse()
 l1.print()
