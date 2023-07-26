@@ -5,13 +5,13 @@ class Solution:
         prev = 1
         for i in range(len(nums)):
             finalList.append(prev)
-            prev = nums[i]*finalList[-1]
+            prev *= nums[i]
 
         #Second pass to get the postfixes
         prev = 1
         for i in range(len(nums)-1, -1, -1):
             finalList[i] = finalList[i] * prev
-            prev = prev * nums[i]
+            prev *= nums[i]
 
         return finalList
     
